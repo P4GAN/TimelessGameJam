@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
     //private bool canDoubleJump = true;
-    private bool landing = false;
+    private bool landing = true;
+    private bool falling = true;
     private bool Jumped = false;
     private bool jumpCancelBool = false;
     private float mayJump = 0.2f;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         isGroundedBool = IsGrounded();
         if (!isGroundedBool)
         {
+            landing = true;
             TimeManager.StartTime();
         }
         else if (isGroundedBool)
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
             moveX = Input.GetAxis("Horizontal");
             mayJump = 0.2f;
             Jumped = false;
+            falling = true;
             //canDoubleJump = true;
         }
         
@@ -88,17 +91,28 @@ public class PlayerController : MonoBehaviour
                 jumpCancelBool = false;
             }*/
         }
-        if(Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.M))
+        if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.M))
         {
-            if(isGroundedBool == false)
+
+            if (isGroundedBool == false)
             {
-                UnityEngine.Debug.Log(rb.linearVelocity.y);
                 if (rb.linearVelocity.y <= 0f)
                 {
                     rb.AddForce(Vector2.up * floatSlow, ForceMode2D.Force);
                 }
-                playeranim.SetTrigger("fall");
-            }  
+                if (falling == true)
+                {
+                    playeranim.SetTrigger("fall");
+                    falling = false;
+                }
+            }
+        }
+        else
+        {
+            if (isGroundedBool == false)
+            {
+                playeranim.SetTrigger("jump");
+            }
         }
 
         if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("Vertical")) && !isGroundedBool) // Player stops pressing the button
