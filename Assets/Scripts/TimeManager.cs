@@ -54,6 +54,11 @@ public class TimeManager : MonoBehaviour
             {
                 mp.isMoving = false;
             }
+            RotatingPlatform rp = movingPlatforms[i].GetComponent<RotatingPlatform>();
+            if (rp != null)
+            {
+                rp.isMoving = false;
+            }
         }
     }
 
@@ -73,6 +78,11 @@ public class TimeManager : MonoBehaviour
             if (mp != null)
             {
                 mp.isMoving = true;
+            }
+            RotatingPlatform rp = movingPlatforms[i].GetComponent<RotatingPlatform>();
+            if (rp != null)
+            {
+                rp.isMoving = true;
             }
         }
     }
