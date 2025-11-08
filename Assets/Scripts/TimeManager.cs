@@ -10,8 +10,8 @@ public class TimeManager : MonoBehaviour
     List<GameObject> movingPlatforms = new List<GameObject>();
 
     int timeDilationStage = 0;
-    List<float> timeDilations = new List<float> { 1.000f, 0.855f, 0.720f, 0.595f, 0.480f, 0.375f, 0.280f, 0.195f, 0.120f, 0.055f, 0.000f }; // quadratic-ish
-    // List<float> timeDilations = new List<float> { 1.00f, 0.60f, 0.36f, 0.22f, 0.13f, 0.08f, 0.05f, 0.026f, 0.009f, 0.00f }; // exponential-ish
+    // List<float> timeDilations = new List<float> { 1.000f, 0.855f, 0.720f, 0.595f, 0.480f, 0.375f, 0.280f, 0.195f, 0.120f, 0.055f, 0.000f }; // quadratic-ish
+    List<float> timeDilations = new List<float> { 1.00f, 0.60f, 0.36f, 0.22f, 0.13f, 0.08f, 0.05f, 0.026f, 0.009f, 0.00f }; // exponential-ish
 
     List<Vector2> storedVelocities = new List<Vector2>();
 
