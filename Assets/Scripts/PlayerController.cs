@@ -1,7 +1,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -120,12 +119,10 @@ public class PlayerController : MonoBehaviour
         if (moveX != 0 && isGroundedBool)
         {
             playeranim.SetBool("run", true);
-            footEmissions.rateOverTime= 35f;
         }
         else
         {
             playeranim.SetBool("run",false);
-            footEmissions.rateOverTime = 0f;
         }       
     }
 
@@ -164,13 +161,5 @@ public class PlayerController : MonoBehaviour
         Vector2 rayOrigin = new Vector2(groundCheck.transform.position.x, groundCheck.transform.position.y - 0.01f);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, groundLayer);
         return hit.collider != null;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "killzone")
-        {
-            GameManager.instance.Death();
-        }
     }
 }
