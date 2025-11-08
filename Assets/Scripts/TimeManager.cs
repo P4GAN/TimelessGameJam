@@ -4,8 +4,10 @@ using System.Collections.Generic;
 public class TimeManager : MonoBehaviour
 {    
     public GameObject gravityObjectsParent;
+    public GameObject movingPlatformsParent;
 
     List<GameObject> gravityObjects = new List<GameObject>();
+    List<GameObject> movingPlatforms = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,6 +15,10 @@ public class TimeManager : MonoBehaviour
         foreach (Transform child in gravityObjectsParent.transform)
         {
             gravityObjects.Add(child.gameObject);
+        }
+        foreach (Transform child in movingPlatformsParent.transform)
+        {
+            movingPlatforms.Add(child.gameObject);
         }
         StopTime();
     }
@@ -41,6 +47,14 @@ public class TimeManager : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
             }
         }
+        for (int i = 0; i < movingPlatforms.Count; i++)
+        {
+            MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
+            if (mp != null)
+            {
+                mp.isMoving = false;
+            }
+        }
     }
 
     public void StartTime() 
@@ -51,6 +65,14 @@ public class TimeManager : MonoBehaviour
             if (rb != null)
             {
                 rb.gravityScale = 1;
+            }
+        }
+        for (int i = 0; i < movingPlatforms.Count; i++)
+        {
+            MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
+            if (mp != null)
+            {
+                mp.isMoving = true;
             }
         }
     }
