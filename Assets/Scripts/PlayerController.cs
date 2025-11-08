@@ -71,10 +71,11 @@ public class PlayerController : MonoBehaviour
                 mayJump = 0;
                 Jumped = true;
             }
-            else if(Jumped == true && canDoubleJump == true)
+            else if(isGroundedBool == false && canDoubleJump == true)
             {
                 Jump(doubleJumpForce);
                 canDoubleJump = false;
+                jumpCancelBool = false;
             }
         }
 
@@ -160,7 +161,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         float rayLength = 0.25f;
-        Vector2 rayOrigin = new Vector2(groundCheck.transform.position.x, groundCheck.transform.position.y - 0.1f);
+        Vector2 rayOrigin = new Vector2(groundCheck.transform.position.x, groundCheck.transform.position.y - 0.01f);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, groundLayer);
         return hit.collider != null;
     }
