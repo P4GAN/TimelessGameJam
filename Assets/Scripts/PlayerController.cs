@@ -7,17 +7,17 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 8f;
 
-    public float jumpForce = 10f;
+    public float jumpForce = 60f;
     public float jumpCancelStrength = 100f;
-    public float doubleJumpForce = 8f;
+    //public float doubleJumpForce = 40f;
     public LayerMask groundLayer;
     public Transform groundCheck;
 
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
-    private bool canDoubleJump = true;
+    //private bool canDoubleJump = true;
     private bool Jumped = false;
     private bool jumpCancelBool = false;
     private float mayJump = 0.2f;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             moveX = Input.GetAxis("Horizontal");
             mayJump = 0.2f;
             Jumped = false;
-            canDoubleJump = true;
+            //canDoubleJump = true;
         }
 
         if (Input.GetButtonDown("Jump")) // Player starts pressing the button
@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour
                 mayJump = 0;
                 Jumped = true;
             }
-            else if(isGroundedBool == false && canDoubleJump == true)
+            /*else if(isGroundedBool == false && canDoubleJump == true)
             {
                 Jump(doubleJumpForce);
                 canDoubleJump = false;
                 jumpCancelBool = false;
-            }
+            }*/
         }
 
         if (Input.GetButtonUp("Jump") && !isGroundedBool) // Player stops pressing the button
