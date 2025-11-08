@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Controls { mobile,pc}
-
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -19,8 +17,6 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump = false;
 
     public Animator playeranim;
-
-    public Controls controlmode;
    
     private float moveX;
     public bool isPaused = false;
@@ -35,11 +31,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         footEmissions = footsteps.emission;
-
-        if (controlmode == Controls.mobile)
-        {
-            UIManager.instance.EnableMobileControls();
-        }
     }
 
     private void Update()
@@ -49,11 +40,7 @@ public class PlayerController : MonoBehaviour
         if (isGroundedBool)
         {
             canDoubleJump = true; // Reset double jump when grounded
-
-            if (controlmode == Controls.pc)
-            {
-                moveX = Input.GetAxis("Horizontal");
-            }
+            moveX = Input.GetAxis("Horizontal");
 
 
             if (Input.GetButtonDown("Jump"))
@@ -124,10 +111,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Player movement
-        if (controlmode == Controls.pc)
-        {
-            moveX = Input.GetAxis("Horizontal");
-        }
+        moveX = Input.GetAxis("Horizontal");
        
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
     }

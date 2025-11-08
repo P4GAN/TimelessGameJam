@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    public GameObject mobileControls;
 
     public bool fadeToBlack, fadeFromBlack;
     public Image blackScreen;
@@ -20,14 +19,6 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-    public void DisableMobileControls()
-    {
-        mobileControls.SetActive(false);
-    }
-    public void EnableMobileControls()
-    {
-        mobileControls.SetActive(true);
-    }
 
     private void Update()
     {
@@ -62,10 +53,6 @@ public class UIManager : MonoBehaviour
 
         if (blackScreen.color.a <= 0f)
         {
-            if(playerController.controlmode == Controls.mobile)
-            {
-                EnableMobileControls();
-            }
             fadeFromBlack = false;
         }
     }
