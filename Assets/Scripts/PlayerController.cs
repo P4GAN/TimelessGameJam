@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
+    private float mayJump = 0.2f;
 
     public Animator playeranim;
    
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        mayJump -= Time.deltaTime;
         isGroundedBool = IsGrounded();
         if (!isGroundedBool)
         {
@@ -49,10 +51,16 @@ public class PlayerController : MonoBehaviour
         if (isGroundedBool)
         {
             moveX = Input.GetAxis("Horizontal");
+            mayJump = 0.2f;
 
-            if (Input.GetButtonDown("Jump"))
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (mayJump > 0)
             {
                 Jump(jumpForce);
+                mayJump = 0f;
             }
         }
 
