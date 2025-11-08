@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
         FindTotalPickups();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
+    }
+
     public void IncrementCoinCount()
     {
         coinCount++;
