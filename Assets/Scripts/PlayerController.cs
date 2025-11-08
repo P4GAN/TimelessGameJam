@@ -31,10 +31,6 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem ImpactEffect;
     private bool wasonGround;
 
-    public float fireRate = 0.5f; // Time between each shot
-    private float nextFireTime = 0f; // Time of the next allowed shot
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,8 +40,6 @@ public class PlayerController : MonoBehaviour
         {
             UIManager.instance.EnableMobileControls();
         }
-
-
     }
 
     private void Update()
@@ -76,22 +70,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!isPaused)
-        {
-            // Calculate rotation angle based on mouse position
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 lookDirection = mousePosition - transform.position;
-            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
-            // ... (your existing code for rotation)
-
-            // Handle shooting
-            if (controlmode == Controls.pc && Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
-            {
-                Shoot();
-                nextFireTime = Time.time + 1f / fireRate; // Set the next allowed fire time
-            }
-        }
         SetAnimations();
 
         if (moveX != 0)
