@@ -11,6 +11,7 @@ public class ExitTrigger : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine("LevelExit");
+            Debug.Log("Yes");
         }
     }
 
@@ -18,11 +19,14 @@ public class ExitTrigger : MonoBehaviour
     {
         //anim.SetTrigger("Exit");
         yield return new WaitForSeconds(0.1f);
+        
+        Debug.Log("Yes");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         UIManager.instance.fadeToBlack = true;
 
         yield return new WaitForSeconds(2f);
         // Do something after flag anim
-        GameManager.instance.LevelComplete();
+
     }
 }
