@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour
-{
+{    
     public GameObject PhysicsObjectsParent;
 
     List<GameObject> physicsObjects = new List<GameObject>();
@@ -30,7 +30,7 @@ public class TimeManager : MonoBehaviour
         }   
     }
 
-    void StopTime()
+    public void StopTime()
     {
         for (int i = 0; i < physicsObjects.Count; i++)
         {
@@ -42,7 +42,7 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    void StartTime() 
+    public void StartTime() 
     {
         for (int i = 0; i < physicsObjects.Count; i++)
         {

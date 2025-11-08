@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
-    private bool canDoubleJump = false;
 
     public Animator playeranim;
    
@@ -27,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem ImpactEffect;
     private bool wasonGround;
 
+    public TimeManager TimeManager;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,24 +37,23 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isGroundedBool = IsGrounded();
+        Debug.Log(isGroundedBool);
+        if (!isGroundedBool)
+        {
+            TimeManager.StartTime();
+        }
+        else if (isGroundedBool)
+        {
+            TimeManager.StopTime();
+        }
 
         if (isGroundedBool)
         {
-            canDoubleJump = true; // Reset double jump when grounded
             moveX = Input.GetAxis("Horizontal");
-
 
             if (Input.GetButtonDown("Jump"))
             {
                 Jump(jumpForce);
-            }
-        }
-        else
-        {
-            if (canDoubleJump && Input.GetButtonDown("Jump"))
-            {
-                Jump(doubleJumpForce);
-                canDoubleJump = false; // Disable double jump until grounded again
             }
         }
 
@@ -89,10 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             playeranim.SetBool("run",false);
             footEmissions.rateOverTime = 0f;
-        }
-
-        playeranim.SetBool("isGrounded", isGroundedBool);
-       
+        }       
     }
 
     private void FlipSprite(float direction)

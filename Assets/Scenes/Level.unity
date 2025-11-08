@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 51788894}
   - component: {fileID: 51788896}
   - component: {fileID: 51788895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ImpactEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5022,7 +5022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 93182928}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5618,7 +5618,7 @@ GameObject:
   - component: {fileID: 664841622}
   - component: {fileID: 664841626}
   - component: {fileID: 664841627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5642,12 +5642,13 @@ MonoBehaviour:
   doubleJumpForce: 40
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 9
   groundCheck: {fileID: 93182928}
   playeranim: {fileID: 1126557507}
   isPaused: 0
   footsteps: {fileID: 1671786042}
   ImpactEffect: {fileID: 51788896}
+  TimeManager: {fileID: 1554447435}
 --- !u!4 &664841624
 Transform:
   m_ObjectHideFlags: 0
@@ -8785,7 +8786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876126420}
   - component: {fileID: 876126421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9007,7 +9008,7 @@ GameObject:
   - component: {fileID: 1126557505}
   - component: {fileID: 1126557506}
   - component: {fileID: 1126557507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: sr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9657,7 +9658,7 @@ GameObject:
   - component: {fileID: 1671786040}
   - component: {fileID: 1671786042}
   - component: {fileID: 1671786041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FootSteps
   m_TagString: Untagged
   m_Icon: {fileID: 0}

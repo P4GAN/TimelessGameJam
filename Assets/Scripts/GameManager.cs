@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
     [SerializeField] private TMP_Text coinText;
 
     [SerializeField] private PlayerController playerController;
@@ -22,14 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelCompletePanel;
     [SerializeField] TMP_Text leveCompletePanelTitle;
     [SerializeField] TMP_Text levelCompleteCoins;
-
-
-
-
    
     private int totalCoins = 0;
-  
-
 
 
     private void Awake()
