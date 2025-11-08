@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             //canDoubleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump") || Input.GetButtonUp("Vertical")) // Player starts pressing the button
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical")) // Player starts pressing the button
         {
             if (mayJump > 0 && Jumped == false)
             {
