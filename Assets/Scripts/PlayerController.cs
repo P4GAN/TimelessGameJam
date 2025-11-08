@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
+    private bool canDoubleJump = true;
+    private bool Jumped = false;
     private bool jumpCancelBool = false;
     private float mayJump = 0.2f;
 
@@ -57,24 +59,33 @@ public class PlayerController : MonoBehaviour
         {
             moveX = Input.GetAxis("Horizontal");
             mayJump = 0.2f;
+            Jumped = false;
+            canDoubleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump") && mayJump > 0) // Player starts pressing the button
-        {  
-            Jump(jumpForce);
+        if (Input.GetButtonDown("Jump")) // Player starts pressing the button
+        {
+            if (mayJump > 0 && Jumped == false)
+            {
+                Jump(jumpForce);
+                mayJump = 0;
+                Jumped = true;
+            }
+            else if(Jumped == true && canDoubleJump == true)
+            {
+                Jump(doubleJumpForce);
+                canDoubleJump = false;
+            }
         }
 
         if (Input.GetButtonUp("Jump") && !isGroundedBool) // Player stops pressing the button
         {
-            UnityEngine.Debug.Log(jumpCancelBool);
             jumpCancelBool = true;
             
         }   
         
         if (jumpCancelBool == true)
         {
-            UnityEngine.Debug.Log(rb.linearVelocity.y);
-            UnityEngine.Debug.Log(jumpCancelBool);
             rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
             if(rb.linearVelocity.y <= 0.1f)
             {
