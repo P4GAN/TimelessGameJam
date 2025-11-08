@@ -9,8 +9,8 @@ public class TimeManager : MonoBehaviour
     List<GameObject> gravityObjects = new List<GameObject>();
     List<GameObject> movingPlatforms = new List<GameObject>();
 
-    public bool timeAlreadyStopped = false;
-    public List<Vector2> storedVelocities = new List<Vector2>();
+    bool timeAlreadyStopped = true;
+    List<Vector2> storedVelocities = new List<Vector2>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,14 +48,12 @@ public class TimeManager : MonoBehaviour
             if (rb != null)
             {
                 rb.gravityScale = 0;
-                if (!timeAlreadyStopped)
-                { // at the moment time starts, preserve current momenta
+                if (!timeAlreadyStopped) // at the moment time starts, preserve current momenta
                     storedVelocities[i] = rb.linearVelocity;
-                    timeAlreadyStopped = true;
-                }
                 rb.linearVelocity = Vector2.zero;
             }
         }
+        timeAlreadyStopped = true;
         for (int i = 0; i < movingPlatforms.Count; i++)
         {
             MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
@@ -74,13 +72,11 @@ public class TimeManager : MonoBehaviour
             if (rb != null)
             {
                 rb.gravityScale = 1;
-                if (timeAlreadyStopped)
-                { // at the moment time restarts, restore previous momenta
+                if (timeAlreadyStopped) // at the moment time restarts, restore previous momenta
                     rb.linearVelocity = storedVelocities[i];
-                    timeAlreadyStopped = false;
-                }
             }
         }
+        timeAlreadyStopped = false;
         for (int i = 0; i < movingPlatforms.Count; i++)
         {
             MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
