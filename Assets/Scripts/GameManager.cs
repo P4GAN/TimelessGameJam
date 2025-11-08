@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelCompletePanel;
     [SerializeField] TMP_Text leveCompletePanelTitle;
     [SerializeField] TMP_Text levelCompleteCoins;
-   
+
     private int totalCoins = 0;
 
 
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
     private void UpdateGUI()
     {
         coinText.text = coinCount.ToString();
-  
     }
 
     public void Death()
@@ -77,11 +76,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Died");
         }
     }
- 
+
     public void FindTotalPickups()
     {
-
-        pickup[] pickups = GameObject.FindObjectsOfType<pickup>();
+        pickup[] pickups = GameObject.FindObjectsByType<pickup>(FindObjectsSortMode.None);
 
         foreach (pickup pickupObject in pickups)
         {
@@ -89,26 +87,16 @@ public class GameManager : MonoBehaviour
             {
                 totalCoins += 1;
             }
-           
         }
-
-
-      
     }
     public void LevelComplete()
     {
-       
-
-
         levelCompletePanel.SetActive(true);
         leveCompletePanelTitle.text = "LEVEL COMPLETE";
 
-
-
-        levelCompleteCoins.text = "COINS COLLECTED: "+ coinCount.ToString() +" / " + totalCoins.ToString();
- 
+        levelCompleteCoins.text = "COINS COLLECTED: " + coinCount.ToString() + " / " + totalCoins.ToString();
     }
-   
+
     public IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(1f);
@@ -121,9 +109,6 @@ public class GameManager : MonoBehaviour
         if (isGameOver)
         {
             SceneManager.LoadScene(1);
-
-            
         }
     }
-
 }

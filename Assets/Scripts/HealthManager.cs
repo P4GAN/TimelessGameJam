@@ -23,16 +23,13 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
-        Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        Player = GameObject.FindFirstObjectByType<PlayerController>().gameObject;
         currentHealth = MaxHealth;
         DisplayHearts();
     }
-   
-  
 
     public void HurtPlayer()
     {
-
         if (currentHealth > 0)
         {
             currentHealth--;
@@ -43,7 +40,7 @@ public class HealthManager : MonoBehaviour
         {
             GameManager.instance.Death();
         }
-        
+
         Instantiate(damageEffect, Player.transform.position, Quaternion.identity);
     }
 
@@ -71,7 +68,4 @@ public class HealthManager : MonoBehaviour
             }
         }
     }
-
-    
-
 }
