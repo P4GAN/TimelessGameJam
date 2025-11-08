@@ -1,19 +1,23 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+
     public float jumpForce = 10f;
+    public float jumpCancelStrength = 100f;
     public float doubleJumpForce = 8f;
     public LayerMask groundLayer;
     public Transform groundCheck;
 
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
+    private bool jumpCancelBool = false;
     private float mayJump = 0.2f;
 
     public Animator playeranim;
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         footEmissions = footsteps.emission;
+        
     }
 
     private void Update()
@@ -52,18 +57,31 @@ public class PlayerController : MonoBehaviour
         {
             moveX = Input.GetAxis("Horizontal");
             mayJump = 0.2f;
-
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && mayJump > 0) // Player starts pressing the button
+        {  
+            Jump(jumpForce);
+        }
+
+        if (Input.GetButtonUp("Jump") && !isGroundedBool) // Player stops pressing the button
         {
-            if (mayJump > 0)
+            UnityEngine.Debug.Log(jumpCancelBool);
+            jumpCancelBool = true;
+            
+        }   
+        
+        if (jumpCancelBool == true)
+        {
+            UnityEngine.Debug.Log(rb.linearVelocity.y);
+            UnityEngine.Debug.Log(jumpCancelBool);
+            rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
+            if(rb.linearVelocity.y <= 0.1f)
             {
-                Jump(jumpForce);
-                mayJump = 0f;
+                jumpCancelBool = false;
             }
         }
-
+            
         SetAnimations();
 
         if (moveX != 0)
@@ -116,8 +134,9 @@ public class PlayerController : MonoBehaviour
     {
         // Player movement
         moveX = Input.GetAxis("Horizontal");
-       
+
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
+        
     }
 
     private void Jump(float jumpForce)
