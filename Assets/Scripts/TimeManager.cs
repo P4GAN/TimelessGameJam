@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour
 {    
-    public GameObject PhysicsObjectsParent;
+    public GameObject gravityObjectsParent;
 
-    List<GameObject> physicsObjects = new List<GameObject>();
+    List<GameObject> gravityObjects = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (Transform child in PhysicsObjectsParent.transform)
+        foreach (Transform child in gravityObjectsParent.transform)
         {
-            physicsObjects.Add(child.gameObject);
+            gravityObjects.Add(child.gameObject);
         }
         StopTime();
     }
@@ -32,24 +32,25 @@ public class TimeManager : MonoBehaviour
 
     public void StopTime()
     {
-        for (int i = 0; i < physicsObjects.Count; i++)
+        for (int i = 0; i < gravityObjects.Count; i++)
         {
-            Rigidbody2D rb = physicsObjects[i].GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = gravityObjects[i].GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.bodyType = RigidbodyType2D.Static;
+                rb.gravityScale = 0;
+                rb.linearVelocity = Vector2.zero;
             }
         }
     }
 
     public void StartTime() 
     {
-        for (int i = 0; i < physicsObjects.Count; i++)
+        for (int i = 0; i < gravityObjects.Count; i++)
         {
-            Rigidbody2D rb = physicsObjects[i].GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = gravityObjects[i].GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.gravityScale = 1;
             }
         }
     }

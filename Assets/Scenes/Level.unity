@@ -9557,7 +9557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae25419c72944cefa1a77e092987466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeManager
-  PhysicsObjectsParent: {fileID: 473720490}
+  gravityObjectsParent: {fileID: 473720490}
 --- !u!1 &1622814903
 GameObject:
   m_ObjectHideFlags: 0

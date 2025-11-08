@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isGroundedBool = IsGrounded();
-        Debug.Log(isGroundedBool);
         if (!isGroundedBool)
         {
             TimeManager.StartTime();
