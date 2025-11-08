@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGUI();
         UIManager.instance.fadeFromBlack = true;
         playerPosition = playerController.transform.position;
 
@@ -43,17 +42,10 @@ public class GameManager : MonoBehaviour
     public void IncrementCoinCount()
     {
         coinCount++;
-        UpdateGUI();
     }
     public void IncrementGemCount()
     {
         gemCount++;
-        UpdateGUI();
-    }
-
-    private void UpdateGUI()
-    {
-        coinText.text = coinCount.ToString();
     }
 
     public void Death()
