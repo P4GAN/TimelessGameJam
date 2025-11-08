@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
                 mayJump = 0;
                 Jumped = true;
                 landing = true;
+                falling = true;
             }
             /*else if(isGroundedBool == false && canDoubleJump == true)
             {
