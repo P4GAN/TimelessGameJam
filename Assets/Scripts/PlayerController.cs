@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGroundedBool = false;
     //private bool canDoubleJump = true;
+    private bool landing = false;
     private bool Jumped = false;
     private bool jumpCancelBool = false;
     private float mayJump = 0.2f;
@@ -55,13 +56,21 @@ public class PlayerController : MonoBehaviour
             TimeManager.StopTime();
         }
 
+
         if (isGroundedBool)
         {
+            if(landing)
+            {
+                landing = false;
+                playeranim.SetTrigger("idle");
+            }
             moveX = Input.GetAxis("Horizontal");
             mayJump = 0.2f;
             Jumped = false;
             //canDoubleJump = true;
         }
+        
+        SetAnimations();
 
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical")) // Player starts pressing the button
         {
@@ -70,6 +79,7 @@ public class PlayerController : MonoBehaviour
                 Jump(jumpForce);
                 mayJump = 0;
                 Jumped = true;
+                landing = true;
             }
             /*else if(isGroundedBool == false && canDoubleJump == true)
             {
@@ -78,18 +88,16 @@ public class PlayerController : MonoBehaviour
                 jumpCancelBool = false;
             }*/
         }
-        if(Input.GetKey(KeyCode.X))
+        if(Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.M))
         {
-            UnityEngine.Debug.Log("snap");
             if(isGroundedBool == false)
             {
-                UnityEngine.Debug.Log("crackle");
                 UnityEngine.Debug.Log(rb.linearVelocity.y);
-                if(rb.linearVelocity.y <= 0f)
+                if (rb.linearVelocity.y <= 0f)
                 {
-                    UnityEngine.Debug.Log("yeag");
                     rb.AddForce(Vector2.up * floatSlow, ForceMode2D.Force);
                 }
+                playeranim.SetTrigger("fall");
             }  
         }
 
@@ -101,14 +109,12 @@ public class PlayerController : MonoBehaviour
         
         if (jumpCancelBool == true)
         {
-            rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
             if(rb.linearVelocity.y <= 0.1f)
             {
                 jumpCancelBool = false;
             }
+            rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
         }
-            
-        SetAnimations();
 
         if (moveX != 0)
         {
