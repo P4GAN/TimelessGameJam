@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     private int totalCoins = 0;
 
-
     private void Awake()
     {
         instance = this;
@@ -48,25 +47,9 @@ public class GameManager : MonoBehaviour
         gemCount++;
     }
 
-    public void Death()
+    public void Restart() 
     {
-        if (!isGameOver)
-        {
-            // Initiate screen fade
-            UIManager.instance.fadeToBlack = true;
-
-            // Disable the player object
-            playerController.gameObject.SetActive(false);
-
-            // Start death coroutine to wait and then respawn the player
-            StartCoroutine(DeathCoroutine());
-
-            // Update game state
-            isGameOver = true;
-
-            // Log death message
-            Debug.Log("Died");
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void FindTotalPickups()
@@ -87,20 +70,5 @@ public class GameManager : MonoBehaviour
         leveCompletePanelTitle.text = "LEVEL COMPLETE";
 
         levelCompleteCoins.text = "COINS COLLECTED: " + coinCount.ToString() + " / " + totalCoins.ToString();
-    }
-
-    public IEnumerator DeathCoroutine()
-    {
-        yield return new WaitForSeconds(1f);
-        playerController.transform.position = playerPosition;
-
-        // Wait for 2 seconds
-        yield return new WaitForSeconds(1f);
-
-        // Check if the game is still over (in case player respawns earlier)
-        if (isGameOver)
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 }
