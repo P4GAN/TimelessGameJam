@@ -7,11 +7,15 @@ public class Events : MonoBehaviour
 {
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
-    public void Level()
+    public void Levels()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level Select");
+    }
+    public void Level_1()
+    {
+        SceneManager.LoadScene("Level 1");
     }
     public void Quit()
     {
