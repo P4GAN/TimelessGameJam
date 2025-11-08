@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 60f;
     public float jumpCancelStrength = 100f;
+    public float floatSlow = 90f;
     //public float doubleJumpForce = 40f;
     public LayerMask groundLayer;
     public Transform groundCheck;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
             //canDoubleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump")) // Player starts pressing the button
+        if (Input.GetButtonDown("Jump") || Input.GetButtonUp("Vertical")) // Player starts pressing the button
         {
             if (mayJump > 0 && Jumped == false)
             {
@@ -77,11 +78,25 @@ public class PlayerController : MonoBehaviour
                 jumpCancelBool = false;
             }*/
         }
+        if(Input.GetKey(KeyCode.X))
+        {
+            UnityEngine.Debug.Log("snap");
+            if(isGroundedBool == false)
+            {
+                UnityEngine.Debug.Log("crackle");
+                UnityEngine.Debug.Log(rb.linearVelocity.y);
+                if(rb.linearVelocity.y <= 0f)
+                {
+                    UnityEngine.Debug.Log("yeag");
+                    rb.AddForce(Vector2.up * floatSlow, ForceMode2D.Force);
+                }
+            }  
+        }
 
-        if (Input.GetButtonUp("Jump") && !isGroundedBool) // Player stops pressing the button
+        if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("Vertical")) && !isGroundedBool) // Player stops pressing the button
         {
             jumpCancelBool = true;
-            
+
         }   
         
         if (jumpCancelBool == true)
