@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6114134199057599054}
   - component: {fileID: 8516828888660400845}
   m_Layer: 0
-  m_Name: 1_0
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 4677189620284711784}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.1, y: -0.2, z: 1}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: -7, y: -1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: -7443756053782179069, guid: f1949ba3adde2470e85bf4534afd8b3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e8b59edac2e9b149bde4291926f39c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +87,6 @@ SpriteRenderer:
   m_Size: {x: 5.76, y: 3.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
