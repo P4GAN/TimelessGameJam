@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 1074538329}
   - component: {fileID: 1074538332}
   - component: {fileID: 1074538331}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: SpikeTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
