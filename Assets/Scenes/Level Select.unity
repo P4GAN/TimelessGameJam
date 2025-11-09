@@ -3318,7 +3318,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1620612798}
         m_TargetAssemblyTypeName: Events, Assembly-CSharp
-        m_MethodName: Level_1
+        m_MethodName: Lore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

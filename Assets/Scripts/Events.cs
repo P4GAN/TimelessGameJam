@@ -9,6 +9,10 @@ public class Events : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+    public void Lore()
+    {
+        SceneManager.LoadScene("Lore");
+    }
     public void Levels()
     {
         SceneManager.LoadScene("Level Select");
