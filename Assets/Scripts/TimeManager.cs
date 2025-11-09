@@ -43,12 +43,9 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void StopTimeDilated()
+    private void GravityObjectApplyDilation()
     {
         bool timeJustStopped = timeDilationStage == 0;
-        if (timeDilationStage < timeDilations.Count - 1)
-            ++timeDilationStage;
-
         for (int i = 0; i < gravityObjects.Count; ++i)
         {
             Rigidbody2D rb = gravityObjects[i].GetComponent<Rigidbody2D>();
@@ -64,29 +61,35 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    public void StopTime()
+    private void MovingPlatformUpdateDilation()
     {
-        StopTimeDilated();
         for (int i = 0; i < movingPlatforms.Count; i++)
         {
             MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
+            float dilation = timeDilations[timeDilationStage];
             if (mp != null)
             {
-                mp.isMoving = false;
+                mp.timeDilation = dilation;
             }
             RotatingPlatform rp = movingPlatforms[i].GetComponent<RotatingPlatform>();
             if (rp != null)
             {
-                rp.isMoving = false;
+                rp.timeDilation = dilation;
             }
         }
     }
 
-    private void StartTimeDilated()
+    public void StopTime()
     {
-        if (timeDilationStage == 0)
-            return;
-        --timeDilationStage;
+        if (timeDilationStage < timeDilations.Count - 1)
+            ++timeDilationStage;
+
+        GravityObjectApplyDilation();
+        MovingPlatformUpdateDilation();
+    }
+
+    private void GravityObjectRemoveDilation()
+    {
         for (int i = 0; i < gravityObjects.Count; ++i)
         {
             Rigidbody2D rb = gravityObjects[i].GetComponent<Rigidbody2D>();
@@ -102,19 +105,11 @@ public class TimeManager : MonoBehaviour
 
     public void StartTime()
     {
-        StartTimeDilated();
-        for (int i = 0; i < movingPlatforms.Count; i++)
-        {
-            MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
-            if (mp != null)
-            {
-                mp.isMoving = true;
-            }
-            RotatingPlatform rp = movingPlatforms[i].GetComponent<RotatingPlatform>();
-            if (rp != null)
-            {
-                rp.isMoving = true;
-            }
-        }
+        if (timeDilationStage == 0)
+            return;
+        --timeDilationStage;
+
+        GravityObjectRemoveDilation();
+        MovingPlatformUpdateDilation();
     }
 }
