@@ -10,9 +10,9 @@ public class TimeManager : MonoBehaviour
     List<GameObject> movingPlatforms = new List<GameObject>();
 
     int timeDilationStage = 0;
-    List<float> timeDilations = new List<float> { 1.0f, 0.95f, 0.9f, 0.85f, 0.8f, 0.75f, 0.7f, 0.65f, 0.6f, 0.5f, 0.4f, 0.35f, 0.3f, 0.25f, 0.1f, 0.05f, 0.0f };
+    // List<float> timeDilations = new List<float> { 1.000f, 0.855f, 0.720f, 0.595f, 0.480f, 0.375f, 0.280f, 0.195f, 0.120f, 0.055f, 0.000f }; // quadratic-ish
+    List<float> timeDilations = new List<float> { 1.00f, 0.60f, 0.36f, 0.22f, 0.13f, 0.08f, 0.05f, 0.026f, 0.009f, 0.00f }; // exponential-ish
 
-    bool timeAlreadyStopped = true;
     List<Vector2> storedVelocities = new List<Vector2>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,7 +67,6 @@ public class TimeManager : MonoBehaviour
     public void StopTime()
     {
         StopTimeDilated();
-        timeAlreadyStopped = true;
         for (int i = 0; i < movingPlatforms.Count; i++)
         {
             MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();
@@ -104,7 +103,6 @@ public class TimeManager : MonoBehaviour
     public void StartTime()
     {
         StartTimeDilated();
-        timeAlreadyStopped = false;
         for (int i = 0; i < movingPlatforms.Count; i++)
         {
             MovingPlatform mp = movingPlatforms[i].GetComponent<MovingPlatform>();

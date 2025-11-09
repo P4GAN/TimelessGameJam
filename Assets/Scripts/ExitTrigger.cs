@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitTrigger : MonoBehaviour
 {
-    //public Animator anim;
+    public Animator playeranim;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -19,13 +19,11 @@ public class ExitTrigger : MonoBehaviour
     {
         //anim.SetTrigger("Exit");
         yield return new WaitForSeconds(0.1f);
-        
-        Debug.Log("Yes");
+        playeranim.SetTrigger("win");
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         UIManager.instance.fadeToBlack = true;
-
-        yield return new WaitForSeconds(2f);
         // Do something after flag anim
 
     }
