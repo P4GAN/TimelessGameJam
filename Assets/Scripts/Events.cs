@@ -9,6 +9,10 @@ public class Events : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+    public void Levels()
+    {
+        SceneManager.LoadScene("Level Select");
+    }
     public void Level_1()
     {
         SceneManager.LoadScene("Level 1");
@@ -47,7 +51,7 @@ public class Events : MonoBehaviour
     }
     public void Level_10()
     {
-        SceneManager.LoadScene("Final Level");
+        SceneManager.LoadScene("Last Level");
     }
     public void Quit()
     {
