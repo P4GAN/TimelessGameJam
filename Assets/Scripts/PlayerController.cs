@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip swooshSound;
     public AudioClip walkSound;
+    public AudioClip tickSound;
+
     private float mayJump = 0.2f;
 
     public Animator playeranim;
@@ -41,17 +43,22 @@ public class PlayerController : MonoBehaviour
 
     public TimeManager TimeManager;
 
+    public Renderer greyScreen;
+    private bool tickPlaying;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         footEmissions = footsteps.emission;
-        
+        soundManager.loop = true;
+        soundManager.clip = tickSound;
     }
 
     private void OnDestroy () 
     {
-    rb.linearVelocity = new Vector2(0, 0); // Zero out vertical 
+        rb.linearVelocity = new Vector2(0, 0); // Zero out vertical 
     }
+
     private void Update()
     {
         mayJump -= Time.deltaTime;
@@ -60,12 +67,21 @@ public class PlayerController : MonoBehaviour
         {
             landing = true;
             TimeManager.StartTime();
+            greyScreen.enabled = false;
+            if (!soundManager.isPlaying)
+            {
+                soundManager.Play();
+            }
         }
         else if (isGroundedBool)
         {
             TimeManager.StopTime();
+            greyScreen.enabled = true;
+            if (soundManager.isPlaying)
+            {
+                soundManager.Stop();
+            }
         }
-
 
         if (isGroundedBool)
         {
@@ -157,8 +173,6 @@ public class PlayerController : MonoBehaviour
         }
 
         wasonGround = isGroundedBool;
-
-
     }
     public void SetAnimations()
     {
