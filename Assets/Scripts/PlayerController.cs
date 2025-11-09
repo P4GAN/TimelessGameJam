@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         mayJump -= Time.deltaTime;
         isGroundedBool = IsGrounded();
+        UnityEngine.Debug.Log(isGroundedBool);
         if (!isGroundedBool)
         {
             landing = true;
