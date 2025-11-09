@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2380605456616334230}
   - component: {fileID: 6108292409783590093}
   - component: {fileID: 6048068720463290291}
-  - component: {fileID: 1657850969606137388}
+  - component: {fileID: -1542044087469848266}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.56}
   m_EdgeRadius: 0
---- !u!114 &1657850969606137388
+--- !u!114 &-1542044087469848266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,3 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34dde9c30460f9f4fb65f60320725a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitTrigger
+  playeranim: {fileID: 0}

@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 public class ExitTrigger : MonoBehaviour
 {
     public Animator playeranim;
+    public GameObject myGameObject;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine("LevelExit");
-            Debug.Log("Yes");
+
         }
     }
 
     IEnumerator LevelExit()
     {
         //anim.SetTrigger("Exit");
+        Destroy(myGameObject.GetComponent("PlayerController"));
         yield return new WaitForSeconds(0.1f);
         playeranim.SetTrigger("win");
         yield return new WaitForSeconds(2f);
