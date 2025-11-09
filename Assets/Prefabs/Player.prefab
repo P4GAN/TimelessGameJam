@@ -10111,6 +10111,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 539f9e907b426704cbc0749bef291372, type: 3}
   swooshSound: {fileID: 8300000, guid: 13e1d840a80bdda45a0be578d717b43e, type: 3}
   walkSound: {fileID: 8300000, guid: 0d233160944d7244bafb53d1badf9587, type: 3}
+  tickSound: {fileID: 8300000, guid: a6f2906590f734de6b83d88081b3818f, type: 3}
   playeranim: {fileID: 2544239694895849005}
   isPaused: 0
   soundManager: {fileID: 0}
