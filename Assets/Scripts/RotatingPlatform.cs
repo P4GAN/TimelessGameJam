@@ -3,8 +3,7 @@ using UnityEngine;
 public class RotatingPlatform : MonoBehaviour
 {
     public float rotatingSpeed = 50f;
-
-    public bool isMoving = false;
+    public float timeDilation = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,9 +14,8 @@ public class RotatingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMoving)
-        {
-            transform.Rotate(Vector3.forward, rotatingSpeed * Time.deltaTime);
-        }
+        if (timeDilation == 0.0f)
+            return;
+        transform.Rotate(Vector3.forward, timeDilation * rotatingSpeed * Time.deltaTime);
     }
 }
