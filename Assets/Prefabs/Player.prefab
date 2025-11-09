@@ -10103,7 +10103,7 @@ MonoBehaviour:
   moveSpeed: 8
   jumpForce: 58
   jumpCancelStrength: 100
-  floatSlow: 90
+  floatSlow: 110
   groundLayer:
     serializedVersion: 2
     m_Bits: 9
