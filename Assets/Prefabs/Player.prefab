@@ -10017,8 +10017,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   groundCheck: {fileID: 7506288417002527957}
+  jumpSound: {fileID: 8300000, guid: 539f9e907b426704cbc0749bef291372, type: 3}
+  swooshSound: {fileID: 8300000, guid: 13e1d840a80bdda45a0be578d717b43e, type: 3}
+  walkSound: {fileID: 8300000, guid: 0d233160944d7244bafb53d1badf9587, type: 3}
   playeranim: {fileID: 2544239694895849005}
   isPaused: 0
+  soundManager: {fileID: 0}
   footsteps: {fileID: 5186721098608575490}
   ImpactEffect: {fileID: 5785472501349727509}
   TimeManager: {fileID: 0}

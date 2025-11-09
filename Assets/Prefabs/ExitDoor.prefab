@@ -152,3 +152,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitTrigger
   playeranim: {fileID: 0}
   myGameObject: {fileID: 0}
+  winSound: {fileID: 8300000, guid: 9e6ab749b29ce7b41bfa81af4c2a51ab, type: 3}
+  soundManager: {fileID: 0}

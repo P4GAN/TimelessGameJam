@@ -22,12 +22,16 @@ public class PlayerController : MonoBehaviour
     private bool falling = true;
     private bool Jumped = false;
     private bool jumpCancelBool = false;
+    public AudioClip jumpSound;
+    public AudioClip swooshSound;
+    public AudioClip walkSound;
     private float mayJump = 0.2f;
 
     public Animator playeranim;
    
     private float moveX;
     public bool isPaused = false;
+    public AudioSource soundManager;
 
     public ParticleSystem footsteps;
     private ParticleSystem.EmissionModule footEmissions;
@@ -52,7 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         mayJump -= Time.deltaTime;
         isGroundedBool = IsGrounded();
-        UnityEngine.Debug.Log(isGroundedBool);
         if (!isGroundedBool)
         {
             landing = true;
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 Jumped = true;
                 landing = true;
                 falling = true;
+                soundManager.PlayOneShot(jumpSound);
             }
             /*else if(isGroundedBool == false && canDoubleJump == true)
             {
@@ -109,6 +113,7 @@ public class PlayerController : MonoBehaviour
                 if (falling == true)
                 {
                     playeranim.SetTrigger("fall");
+                    soundManager.PlayOneShot(swooshSound);
                     falling = false;
                 }
             }

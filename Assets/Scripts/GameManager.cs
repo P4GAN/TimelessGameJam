@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UIManager.instance.fadeFromBlack = true;
         playerPosition = playerController.transform.position;
 
         FindTotalPickups();
@@ -76,7 +75,5 @@ public class GameManager : MonoBehaviour
     {
         levelCompletePanel.SetActive(true);
         leveCompletePanelTitle.text = "LEVEL COMPLETE";
-
-        levelCompleteCoins.text = "COINS COLLECTED: " + coinCount.ToString() + " / " + totalCoins.ToString();
     }
 }
