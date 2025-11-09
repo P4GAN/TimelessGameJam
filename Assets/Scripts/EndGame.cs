@@ -18,6 +18,5 @@ public class EndGame : MonoBehaviour
     {
         yield return new WaitForSeconds(0f);
         SceneManager.LoadScene("End Credits");
-        UIManager.instance.fadeToBlack = true;
     }
 }
