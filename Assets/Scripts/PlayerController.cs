@@ -117,30 +117,7 @@ public class PlayerController : MonoBehaviour
                 jumpCancelBool = false;
             }*/
         }
-        if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.M))
-        {
 
-            if (isGroundedBool == false)
-            {
-                if (rb.linearVelocity.y <= 0f)
-                {
-                    rb.AddForce(Vector2.up * floatSlow, ForceMode2D.Force);
-                }
-                if (falling == true)
-                {
-                    playeranim.SetTrigger("fall");
-                    soundManager.PlayOneShot(swooshSound);
-                    falling = false;
-                }
-            }
-        }
-        else
-        {
-            if (isGroundedBool == false)
-            {
-                playeranim.SetTrigger("jump");
-            }
-        }
 
         if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("Vertical")) && !isGroundedBool) // Player stops pressing the button
         {
@@ -148,14 +125,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (jumpCancelBool == true)
-        {
-            if (rb.linearVelocity.y <= 0.1f)
-            {
-                jumpCancelBool = false;
-            }
-            rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
-        }
+        
 
         if (moveX != 0)
         {
@@ -205,6 +175,40 @@ public class PlayerController : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
 
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
+
+        if (jumpCancelBool == true)
+        {
+            if (rb.linearVelocity.y <= 0.1f)
+            {
+                jumpCancelBool = false;
+            }
+            rb.AddForce(Vector2.down * jumpCancelStrength, ForceMode2D.Force);
+        }
+
+        if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.M))
+        {
+
+            if (isGroundedBool == false)
+            {
+                if (rb.linearVelocity.y <= 0f)
+                {
+                    rb.AddForce(Vector2.up * floatSlow, ForceMode2D.Force);
+                }
+                if (falling == true)
+                {
+                    playeranim.SetTrigger("fall");
+                    soundManager.PlayOneShot(swooshSound);
+                    falling = false;
+                }
+            }
+        }
+        else
+        {
+            if (isGroundedBool == false)
+            {
+                playeranim.SetTrigger("jump");
+            }
+        }
         
     }
 
