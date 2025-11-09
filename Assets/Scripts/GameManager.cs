@@ -32,9 +32,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playerPosition = playerController.transform.position;
-
-        FindTotalPickups();
     }
 
     private void Update()
