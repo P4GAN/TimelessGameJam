@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void OnDestroy () 
+    {
+    rb.linearVelocity = new Vector2(0, 0); // Zero out vertical 
+    }
     private void Update()
     {
         mayJump -= Time.deltaTime;
@@ -61,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGroundedBool)
         {
-            if(landing)
+            if (landing)
             {
                 landing = false;
                 playeranim.SetTrigger("idle");
@@ -72,7 +76,7 @@ public class PlayerController : MonoBehaviour
             falling = true;
             //canDoubleJump = true;
         }
-        
+
         SetAnimations();
 
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical")) // Player starts pressing the button
@@ -120,11 +124,11 @@ public class PlayerController : MonoBehaviour
         {
             jumpCancelBool = true;
 
-        }   
-        
+        }
+
         if (jumpCancelBool == true)
         {
-            if(rb.linearVelocity.y <= 0.1f)
+            if (rb.linearVelocity.y <= 0.1f)
             {
                 jumpCancelBool = false;
             }
@@ -138,17 +142,17 @@ public class PlayerController : MonoBehaviour
 
         //impactEffect
 
-        if(!wasonGround && isGroundedBool)
+        if (!wasonGround && isGroundedBool)
         {
             ImpactEffect.gameObject.SetActive(true);
             ImpactEffect.Stop();
-            ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x,footsteps.transform.position.y-0.2f);
+            ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x, footsteps.transform.position.y - 0.2f);
             ImpactEffect.Play();
         }
 
         wasonGround = isGroundedBool;
 
-        
+
     }
     public void SetAnimations()
     {
