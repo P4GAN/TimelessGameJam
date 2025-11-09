@@ -27,8 +27,6 @@ public class ExitTrigger : MonoBehaviour
         soundManager.PlayOneShot(winSound);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-        UIManager.instance.fadeToBlack = true;
         // Do something after flag anim
 
     }
