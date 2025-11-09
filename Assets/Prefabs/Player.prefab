@@ -10010,7 +10010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 60
+  jumpForce: 58
   jumpCancelStrength: 100
   floatSlow: 90
   groundLayer:
