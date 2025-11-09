@@ -3912,6 +3912,14 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 519420034}
+    - target: {fileID: 7231730014956635283, guid: e83aac7931c118a43b677820fca021b2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231730014956635283, guid: e83aac7931c118a43b677820fca021b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7250572891844248511, guid: e83aac7931c118a43b677820fca021b2, type: 3}
       propertyPath: m_Sprite
       value: 

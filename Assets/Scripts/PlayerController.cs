@@ -41,11 +41,12 @@ public class PlayerController : MonoBehaviour
 
     public TimeManager TimeManager;
 
+    public Renderer greyScreen;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         footEmissions = footsteps.emission;
-        
     }
 
     private void OnDestroy () 
@@ -60,10 +61,12 @@ public class PlayerController : MonoBehaviour
         {
             landing = true;
             TimeManager.StartTime();
+            greyScreen.enabled = false;
         }
         else if (isGroundedBool)
         {
             TimeManager.StopTime();
+            greyScreen.enabled = true;
         }
 
 
