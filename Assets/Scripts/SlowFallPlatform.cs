@@ -14,7 +14,7 @@ public class SlowFallPlatform : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rb.AddForce(Vector2.up * rb.gravityScale * strength, ForceMode2D.Force);
     }

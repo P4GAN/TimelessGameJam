@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca296276766f1347862498bfa6527c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlowFallPlatform
-  strength: 90
+  strength: 120
 --- !u!1 &1465828290
 GameObject:
   m_ObjectHideFlags: 0
